@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: dongne-market
+
+  datasource:
+    url: jdbc:postgresql://localhost:5435/dongne
+    username: dongne
+    password: dongne
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    locations: classpath:db/migration, classpath:db/seed-bulk   # 대량 시드 포함 (테스트 프로파일은 제외)
+
+  data:
+    redis:
+      host: localhost
+      port: 6382
+
+  cache:
+    type: redis
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+
+  threads:
+    virtual:
+      enabled: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:dongne-market-local-dev-secret-key-change-me-32b}
+    access-token-ttl: 7d
+  upload-dir: uploads
+  view-flush-interval: 30s
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+
+logging:
+  level:
+    com.dongne: debug

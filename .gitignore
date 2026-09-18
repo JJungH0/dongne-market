@@ -1,0 +1,12 @@
+.gradle/
+build/
+out/
+.idea/
+*.iml
+.DS_Store
+.env
+uploads/*
+!uploads/.gitkeep
+frontend/node_modules/
+frontend/dist/
+src/main/resources/static/
